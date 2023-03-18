@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { UserSettingsFormsComponent } from './user-settings-forms/user-settings-forms.component';
 import{HttpClientModule}  from '@angular/common/http';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +13,7 @@ import{HttpClientModule}  from '@angular/common/http';
   ],
   imports: [
     BrowserModule,FormsModule,
-    HttpClientModule,
+    HttpClientModule,ButtonsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

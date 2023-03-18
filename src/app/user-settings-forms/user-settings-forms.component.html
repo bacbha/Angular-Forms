@@ -9,7 +9,8 @@
     <form #form="ngForm" (ngSubmit)="onSubmit(form)" >  <!--* ngNativeValidate -->
       <div class="form-group">
         <label for="Name"> Name</label>
-        <input id="name" name="name" type="text" class="form-control" [(ngModel)]="userSettings.name" required 
+        <input id="name" name="name" type="text" required class="form-control"
+           [(ngModel)]="userSettings.name" required 
         #nameField="ngModel"
         (blur)="onBlur(nameField)"
         [class.field-error]="form.submitted && nameField.invalid" >
@@ -17,6 +18,13 @@
         class="alert alert-danger">
           Enter a Name
         </div>
+
+        <button type="button" class="btn btn-primary" name="singleModel"
+            [(ngModel)]="singleModel" btnCheckbox
+            btnCheckboxTrue="on" btnCheckboxFalse="off">
+            {{singleModel}}  
+        </button>
+
 
       </div>
     <!--   <h3>dirty :{{proprotyTest.dirty}}</h3>
@@ -59,9 +67,9 @@
 
       <!--? ********** [(ngModel)]="userSettings.subscriptionType *** 2way data buiding-->
               
-      <option>Monthly</option>
-      <option>Annual</option>
-      <option>Lifetime</option>
+      <option *ngFor="let type of subscriptionTypes |async">{{type}}</option>
+      <!-- <option>Annual</option>
+      <option>Lifetime</option> -->
     </select>
   </div>
   <br>
@@ -69,7 +77,9 @@
     <label for="exampleFormControlTextarea1">Notes</label>
     <textarea class="form-control" id="exampleFormControlTextarea1"  name="note" rows="3" [(ngModel)]="userSettings.note"></textarea>
   </div>
-
+  <div [hidden]="!postError" class="alert alert-danger">
+                {{postErrorMessage}}
+  </div>
  <button class="btn btn-primary">Send</button>
 </form>
-<h3> {{ originaluserSettings| json }} </h3>
+<!-- <h3> {{ originaluserSettings| json }} </h3> -->
